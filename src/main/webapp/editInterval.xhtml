@@ -1,0 +1,41 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+<h:head>
+	<h:outputStylesheet library="css" name="priority.css" />
+	<title>Prioritätsintervall bearbeiten</title>
+</h:head>
+
+<body>
+
+    <h:form id="form">
+    	<h:dataTable value="#{priority}" var="prio">
+    		<h:column>
+   				<h:outputText value="Minimum:"></h:outputText>
+    		</h:column>
+    		<h:column>
+   				<h:outputText value="#{prio.min}"></h:outputText>
+    		</h:column>
+    	</h:dataTable>
+    	<h:dataTable value="#{priority}" var="prio">
+    		<h:column>
+   				<h:outputText value="Maximum:"></h:outputText>
+    		</h:column>
+    		<h:column>
+   				<h:inputText id="max" value="#{prio.max}"></h:inputText>
+    		</h:column>
+    		<h:column>
+    			<h:message for="max" styleClass="warn"></h:message>
+    		</h:column>
+    	</h:dataTable>
+
+		<h:commandButton  action="#{priority.save}" value="Speichern"></h:commandButton>
+		<h:button value="Abbrechen" outcome="editToDoList.xhtml"></h:button>
+	</h:form>  
+	
+</body>
+</html>

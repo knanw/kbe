@@ -1,0 +1,62 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+<h:head>
+	<h:outputStylesheet library="css" name="todo.css" />
+	<title>ToDo-Liste</title>
+</h:head>
+
+<body>
+
+    <h:form id="form">    	
+   
+    	<h:outputText value="Derzeit sind #{list.toDoList.doneToDos} von #{list.toDoList.amountOfToDos} ToDos erledigt.&lt;br/&gt;&lt;br/&gt;" escape="false"></h:outputText>
+				
+		<h:outputText value="Meine ToDo-Liste" class="tableheader"/>
+		<!-- //TODO -->
+		<h:dataTable value="#{list.toDoList.toDos}" var="toDo"
+			styleClass="table"
+			headerClass="tableheader"
+			rowClasses="column1,column2">
+			<h:column>
+				<f:facet name="header">ToDo</f:facet>	
+				#{toDo.name}
+			</h:column>
+			<h:column>
+				<f:facet name="header">fällig am</f:facet>
+				<h:inputText value="#{toDo.date}" id="DueDate" label="Due Date" required="true" requiredMessage="Es muss ein Wert eingegeben werden.">
+					<f:convertDateTime pattern="dd.MM.yyyy"/>
+				</h:inputText>
+			</h:column>
+			<h:column>
+				<h:message for="DueDate" styleClass="warn"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Priorität</f:facet>
+				<h:inputText id="priority" value="#{toDo.priority}">
+					<!--  <f:validateLongRange minimum="#{priority.min}" maximum="#{priority.max}"></f:validateLongRange> -->
+				</h:inputText>
+			</h:column>
+			<h:column>
+				<h:message for="priority" styleClass="warn"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">erledigt</f:facet>
+				<h:selectBooleanCheckbox value="#{toDo.done}"/>
+			</h:column>
+		</h:dataTable>
+		
+		<h:commandButton  action="#{list.save}" value="Speichern"></h:commandButton>
+		<h:button value="Abbrechen" outcome="editToDoList.xhtml" ></h:button>
+		<h:commandButton  action="#{list.load}" value="Datenbank laden"></h:commandButton>
+	</h:form>  
+	
+	<h:button value="Prioritäten bearbeiten" outcome="editInterval.xhtml"></h:button>
+	<h:button value="ToDo hinzufügen" outcome="editToDo.xhtml"></h:button>
+	
+</body>
+</html>
