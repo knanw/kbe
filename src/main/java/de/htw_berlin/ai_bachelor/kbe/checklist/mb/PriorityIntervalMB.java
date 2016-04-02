@@ -6,11 +6,13 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
+import javax.inject.Singleton;
 import javax.validation.constraints.Min;
 
 //@ManagedBean(name="priority", eager=true)
 @Named("priority")
 @ApplicationScoped
+@Singleton
 public class PriorityIntervalMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -27,7 +29,7 @@ public class PriorityIntervalMB implements Serializable {
 	
 	@PostConstruct
 	public void init(){
-		this.max = 6;
+		this.max = 2;
 	}
 	
 

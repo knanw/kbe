@@ -23,11 +23,6 @@ public class ToDoListMB implements Serializable {
 	
     private ToDoList toDoList;
     
-	
-	@Inject 
-    private Conversation conversation;
-
-	
 	public ToDoListMB() { //jedesmal bei speichern
 		super();
 		this.toDoList = new ToDoList();
@@ -52,9 +47,7 @@ public class ToDoListMB implements Serializable {
 	//Needs configuration in the faces-config.xml.
 	
     public String save() {
-    	System.out.println("Id::"+ conversation.getId());
-    	System.out.println(toDoList.getToDos().get(4));
-    	System.out.println(toDoList.getToDos().get(16));
+
 
     	// in der Datenbank speichern 
 		GenericDAOFacade<ToDo> facade = new GenericDAOFacade<ToDo>(new ToDoDAO());
@@ -63,7 +56,7 @@ public class ToDoListMB implements Serializable {
 		//wie textdoku save macht neu laden von platte und speichern.
 		
 		//liste aus db laden um die datenbanksynchronisation perfektionieren nicht nur schreiben sondern auch lesen synchron
-    	this.toDoList.loadToDos();
+    	//this.toDoList.loadToDos();
 
     	return "save";
     	
