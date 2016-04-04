@@ -3,6 +3,7 @@ package de.htw_berlin.ai_bachelor.kbe.dao;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.enterprise.inject.Produces;
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaQuery;
  
@@ -10,9 +11,28 @@ public abstract class GenericDAO<T> implements Serializable {
     private static final long serialVersionUID = 1L;
     //"todos" ist festgelegter name in persistence.xml 
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("todos");
+    
+    //@Produces
+   // @PersistenceContext(unitName=" ")
+    //@CustomerDatabase
+    
+   // => @Inject @CustomerDatabase
+    
     private EntityManager em;
  
     private Class<T> entityClass;
+    
+    
+    
+/* 	DISPOSER:  
+ *  @PersistenceContext
+    private EntityManager em;
+    
+    @Produces
+    @UserDatabase
+    public Enttiy Manager create(){return em;}
+    
+    public void close(@Dispose @UserDatabase EntityManager em){em.close();}*/
     
     public GenericDAO(Class<T> entityClass) {
     	em = emf.createEntityManager();

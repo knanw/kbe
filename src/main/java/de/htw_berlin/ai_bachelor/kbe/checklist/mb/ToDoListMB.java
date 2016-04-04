@@ -8,6 +8,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import de.htw_berlin.ai_bachelor.kbe.checklist.model.ToDo;
 import de.htw_berlin.ai_bachelor.kbe.checklist.model.ToDoList;
@@ -15,7 +16,9 @@ import de.htw_berlin.ai_bachelor.kbe.dao.GenericDAOFacade;
 import de.htw_berlin.ai_bachelor.kbe.dao.ToDoDAO;
 
 @Named("list")
-@SessionScoped
+@Singleton
+//@SessionScoped
+@ApplicationScoped
 public class ToDoListMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;

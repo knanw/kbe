@@ -20,8 +20,10 @@ import interceptor2.Secure;
 public class EditToDoMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Inject
+	private ToDoListMB toDolist;
+	
 	private ToDo toDo;
 		
 	public EditToDoMB() {
@@ -35,6 +37,23 @@ public class EditToDoMB implements Serializable {
    @Secure("#{editToDo.name == editToDo.name}") 
 	public String save() throws CloneNotSupportedException {
     	// Holt die Liste ToDoListMB list aus der HTML-Schicht als Java-Objekt
+		//FacesContext fctx = FacesContext.getCurrentInstance();
+		//ELResolver resolver = fctx.getELContext().getELResolver();
+		ToDoDAO dao = new ToDoDAO();
+		ToDo toDoCopy = toDo.clone();
+		dao.save(toDoCopy);//todo zum dao hinzufügen dass es managed ist und es bekommt eine id
+		//ToDoListMB list = (ToDoListMB) resolver.getValue( fctx.getELContext(), null, "list");
+		toDolist.getToDoList().getToDos().add(toDoCopy);
+    	return "save";
+    }   
+    
+   
+   
+   
+   /*  // Früher ohne CDI 
+    *  @Secure("#{editToDo.name == editToDo.name}") 
+	public String save() throws CloneNotSupportedException {
+    	// Holt die Liste ToDoListMB list aus der HTML-Schicht als Java-Objekt
 		FacesContext fctx = FacesContext.getCurrentInstance();
 		ELResolver resolver = fctx.getELContext().getELResolver();
 		ToDoDAO dao = new ToDoDAO();
@@ -44,5 +63,5 @@ public class EditToDoMB implements Serializable {
 		list.getToDoList().getToDos().add(toDoCopy);
     	return "save";
     }   
-    
+    */
 }
