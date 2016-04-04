@@ -12,7 +12,7 @@ import javax.validation.constraints.Min;
 //@ManagedBean(name="priority", eager=true)
 @Named("priority")
 @ApplicationScoped
-@Singleton
+//@Singleton
 public class PriorityIntervalMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
